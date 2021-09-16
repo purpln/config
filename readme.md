@@ -1,6 +1,13 @@
-# config
-
-## example
+```swift
+{
+    "values": {
+        "value": {
+            "bool": true,
+            "value": 220
+        },
+        "url":"https://google.com"
+    }
+}
 
 extension Config {
     static var `default`: Config? {
@@ -8,7 +15,10 @@ extension Config {
         return Config(url: URL(fileURLWithPath: path))
     }
 }
+
 guard let config = config[.default] else { return }
-print(config["values"][.value][.bool].bool,
-      config[.values][.value]["value"].double,
-      config[.values]["url"].url)
+
+config["values"][.value][.bool].bool     //true
+config[.values][.value]["value"].double  //220.0
+config[.values]["url"].url               //https://google.com
+```
