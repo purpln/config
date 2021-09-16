@@ -1,4 +1,6 @@
 ```swift
+typealias config = Config
+
 {
     "values": {
         "value": {
