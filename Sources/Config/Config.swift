@@ -34,7 +34,9 @@ public class Config {
 
 public extension Config {
     enum Keys: String {
-        case url, int, bool, type, flow, version, value, values, data
+        case flow, version, value, values
+        case url, int, bool, type, data, color, image
+        case selected, enabled, mod
     }
     
     var bool: Bool? { value as? Bool }
