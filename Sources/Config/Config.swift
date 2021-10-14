@@ -32,11 +32,16 @@ public class Config {
     }
 }
 
+// keys and return values
 public extension Config {
     enum Keys: String {
-        case flow, version, value, values, mode, dictionary, `default`
-        case url, int, bool, type, data, color, image, array
+        case `default`, version, mode, dictionary
+        case url, int, bool, data, color, image, array
         case selected, enabled, modified
+        case type, id, key, value, tag, info, count
+        case types, values, tags, range, flow, line, page
+        case min, max, new, old
+        case description
     }
     
     var array: [Any]? { value as? [Any] }
@@ -62,6 +67,7 @@ public extension Config {
     var url: URL? { URL(string: string) }
 }
 
+// static methods
 public extension Config {
     static var dictionary: [String: Any] {
         guard let path = Bundle.main.path(forResource: "config", ofType: "json"),
