@@ -1,34 +1,24 @@
 import Foundation
 
 public class Config {
-    var value: Any? = nil
+    var value: Any?
     
-    init(_ key: String, dictionary: [String: Any]? = nil) {
-        if let value = dictionary?[key] {
-            self.value = value
-        }
-    }
-    
-    init(value: Any?) {
-        self.value = value
-    }
-    
-    init(key: String) {
-        if let values = value as? [String: Any] {
-            self.value = values[key]
-        }
-    }
+    init(value: Any?) { self.value = value }
     
     public static subscript(index: Config?) -> Config? { index }
     
+    public static subscript(index: KeyPath<Config, Config?>) -> Int { print(index); return index.hashValue }
+    
     public subscript(index: Keys) -> Config { self[index.rawValue] }
-    public subscript(index: String) -> Config {
-        guard let value = value as? [String: Any] else { return Config(value: nil) }
-        return Config(index, dictionary: value)
+    public subscript(index: String) -> Self {
+        guard let values = value as? [String: Any], let value = values[index] else { return self }
+        self.value = value
+        return self
     }
-    public subscript(index: Int) -> Config? {
-        guard let values = value as? [Any] else { return nil }
-        return Config(value: values[safe: index])
+    public subscript(index: Int) -> Self? {
+        guard let values = value as? [Any], let value = values[safe: index] else { return nil }
+        self.value = value
+        return self
     }
 }
 
@@ -36,12 +26,17 @@ public class Config {
 public extension Config {
     enum Keys: String {
         case `default`, version, mode, dictionary
-        case url, int, bool, data, color, image, array
-        case selected, enabled, modified
-        case type, id, key, value, tag, info, count
-        case types, values, tags, range, flow, line, page
-        case min, max, new, old
-        case description
+        case url, int, bool, data, color, image, array, line
+        case type, id, key, value, tag, count, state
+        case types, values, tags, range, flow, lines, docs, files
+        case description, page, link, list, api, map
+        case json, xml, tsv, csv, mp4, png, gif, doc
+        case selected, enabled, modified, updated, initialized
+        case min, max, new, old, token, tokens, auth, support
+        case location, time, date, device, search, model
+        case unavailable, unknown, wait, warning, error, expiration
+        case none, web, linux, android, windows, macos, ios
+        case info, terms, about, `private`, personal, control
     }
     
     var array: [Any]? { value as? [Any] }
