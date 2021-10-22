@@ -7,7 +7,7 @@ public class Config {
     
     public static subscript(index: Config?) -> Config? { index }
     
-    public static subscript(index: KeyPath<Config, Config?>) -> Int { print(index); return index.hashValue }
+    public static subscript(index: KeyPath<Config.Type, Config?>) -> Int { print(index); return index.hashValue }
     
     public subscript(index: Keys) -> Config { self[index.rawValue] }
     public subscript(index: String) -> Self {
