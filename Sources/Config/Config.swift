@@ -23,7 +23,7 @@ public class Config {
 // keys and return values
 public extension Config {
     enum Keys: String {
-        case `default`, version, mode, dictionary
+        case `default`, version, mode, dictionary, none
         case url, int, bool, data, color, image, array, line
         case type, id, key, value, tag, count, state
         case types, values, tags, range, flow, lines, docs, files
@@ -33,8 +33,9 @@ public extension Config {
         case min, max, new, old, token, tokens, auth, support
         case location, time, date, device, search, model
         case unavailable, unknown, wait, warning, error, expiration
-        case none, web, linux, android, windows, macos, ios
+        case web, linux, android, windows, macos, ios, ipados
         case info, terms, about, `private`, personal, control
+        case background, foreground, controller, router, view
     }
     
     var array: [Any]? { value as? [Any] }
